@@ -299,22 +299,31 @@ const HoldItemComponent = ({
   });
   //#endregion
 
+  const timeNeededForRemoveFlickering = 20;
+
   //#region animated styles & props
   const animatedContainerStyle = useAnimatedStyle(() => {
     const animateOpacity = () =>
-      withDelay(HOLD_ITEM_TRANSFORM_DURATION, withTiming(1, { duration: 0 }));
+      withDelay(
+        HOLD_ITEM_TRANSFORM_DURATION - timeNeededForRemoveFlickering,
+        withTiming(1, { duration: 0 })
+      );
 
     return {
       opacity: isActive.value ? 0 : animateOpacity(),
       transform: [
         {
           scale: isActive.value
-            ? withTiming(1, { duration: HOLD_ITEM_TRANSFORM_DURATION })
+            ? withTiming(1, {
+                duration:
+                  HOLD_ITEM_TRANSFORM_DURATION - timeNeededForRemoveFlickering,
+              })
             : itemScale.value,
         },
       ],
     };
   });
+
   const containerStyle = React.useMemo(
     () => [containerStyles, animatedContainerStyle],
     [containerStyles, animatedContainerStyle]
@@ -330,7 +339,10 @@ const HoldItemComponent = ({
         ? 0
         : isActive.value
         ? withSpring(tY, SPRING_CONFIGURATION)
-        : withTiming(-0.1, { duration: HOLD_ITEM_TRANSFORM_DURATION });
+        : withTiming(-0.1, {
+            duration:
+              HOLD_ITEM_TRANSFORM_DURATION - timeNeededForRemoveFlickering,
+          });
 
     return {
       zIndex: 10,
