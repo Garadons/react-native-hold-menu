@@ -435,7 +435,7 @@ const HoldItemComponent = ({
           animatedProps={animatedPortalProps}
         >
           <PortalOverlay />
-          {children}
+          {isActive.value && children}
         </Animated.View>
       </Portal>
     </>
