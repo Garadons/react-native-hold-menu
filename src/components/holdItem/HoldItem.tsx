@@ -313,7 +313,6 @@ const HoldItemComponent = ({
             : itemScale.value,
         },
       ],
-      display: isActive.value ? 'none' : 'flex', // Замість лише opacity
     };
   });
 
@@ -369,12 +368,11 @@ const HoldItemComponent = ({
     () => state.value,
     _state => {
       if (_state === CONTEXT_MENU_STATE.END) {
-        runOnJS(() =>
-          setTimeout(
-            () => (isActive.value = false),
-            HOLD_ITEM_TRANSFORM_DURATION
-          )
-        );
+        isActive.value = false;
+
+        itemScale.value = withTiming(1, {
+          duration: HOLD_ITEM_TRANSFORM_DURATION,
+        });
       }
     }
   );
