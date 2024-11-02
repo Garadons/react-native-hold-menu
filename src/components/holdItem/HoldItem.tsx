@@ -313,8 +313,10 @@ const HoldItemComponent = ({
             : itemScale.value,
         },
       ],
+      display: isActive.value ? 'none' : 'flex', // Замість лише opacity
     };
   });
+
   const containerStyle = React.useMemo(
     () => [containerStyles, animatedContainerStyle],
     [containerStyles, animatedContainerStyle]
@@ -367,7 +369,12 @@ const HoldItemComponent = ({
     () => state.value,
     _state => {
       if (_state === CONTEXT_MENU_STATE.END) {
-        isActive.value = false;
+        runOnJS(() =>
+          setTimeout(
+            () => (isActive.value = false),
+            HOLD_ITEM_TRANSFORM_DURATION
+          )
+        );
       }
     }
   );
@@ -419,6 +426,8 @@ const HoldItemComponent = ({
   }, [overlayGestureEvent]);
   //#endregion
 
+  const memoizedChildren = useMemo(() => children, [children]);
+
   //#region render
   return (
     <>
@@ -435,7 +444,7 @@ const HoldItemComponent = ({
           animatedProps={animatedPortalProps}
         >
           <PortalOverlay />
-          {children}
+          {memoizedChildren}
         </Animated.View>
       </Portal>
     </>
