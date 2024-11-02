@@ -367,12 +367,20 @@ const HoldItemComponent = ({
   useAnimatedReaction(
     () => state.value,
     _state => {
-      if (_state === CONTEXT_MENU_STATE.END) {
-        isActive.value = false;
-
-        itemScale.value = withTiming(1, {
-          duration: HOLD_ITEM_TRANSFORM_DURATION,
-        });
+      if (_state === CONTEXT_MENU_STATE.ACTIVE) {
+        if (!isActive.value) {
+          isActive.value = true;
+          itemScale.value = withTiming(1, {
+            duration: HOLD_ITEM_TRANSFORM_DURATION,
+          });
+        }
+      } else if (_state === CONTEXT_MENU_STATE.END) {
+        if (isActive.value) {
+          isActive.value = false;
+          itemScale.value = withTiming(1, {
+            duration: HOLD_ITEM_TRANSFORM_DURATION,
+          });
+        }
       }
     }
   );
@@ -431,7 +439,7 @@ const HoldItemComponent = ({
     <>
       <GestureHandler>
         <Animated.View ref={containerRef} style={containerStyle}>
-          {children}
+          {memoizedChildren}
         </Animated.View>
       </GestureHandler>
 
