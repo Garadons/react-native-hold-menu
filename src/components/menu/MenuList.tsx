@@ -101,7 +101,7 @@ const MenuListComponent = () => {
             ? 'rgba(255, 255, 255, .75)'
             : 'rgba(255, 255, 255, .95)'
           : IS_IOS
-          ? 'rgba(0,0,0,0.5)'
+          ? 'rgba(28, 28, 30, 1)'
           : 'rgba(39, 39, 39, .8)',
     };
   }, [theme]);
