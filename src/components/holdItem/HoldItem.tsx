@@ -299,7 +299,7 @@ const HoldItemComponent = ({
   });
   //#endregion
 
-  const timeNeededForRemoveFlickering = 20;
+  const timeNeededForRemoveFlickering = 50;
 
   //#region animated styles & props
   const animatedContainerStyle = useAnimatedStyle(() => {

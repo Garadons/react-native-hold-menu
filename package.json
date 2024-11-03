@@ -42,8 +42,8 @@
   },
   "dependencies": {
     "@gorhom/portal": "^1.0.3",
-    "expo-blur": "~13.0.2",
-    "expo-haptics": "~13.0.1",
+    "expo-blur": "^11.1.0",
+    "expo-haptics": "^11.2.0",
     "lodash.isequal": "^4.5.0",
     "nanoid": "^3.1.20"
   },
@@ -71,7 +71,7 @@
     "react-native-builder-bob": "^0.17.1",
     "react-native-gesture-handler": "~2.16.1",
     "react-native-reanimated": "~3.10.1",
-    "react-test-renderer": "~16.13.1",
+    "react-test-renderer": "^18.2.0",
     "release-it": "^14.4.1",
     "typescript": "~5.3.3"
   },
