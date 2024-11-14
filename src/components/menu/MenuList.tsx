@@ -98,7 +98,7 @@ const MenuListComponent = () => {
       backgroundColor:
         theme.value === 'light'
           ? IS_IOS
-            ? 'rgba(255, 255, 255, .75)'
+            ? 'rgba(255, 255, 255, 1)'
             : 'rgba(255, 255, 255, .95)'
           : IS_IOS
           ? 'rgba(28, 28, 30, 1)'
